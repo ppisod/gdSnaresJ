@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgy41ybl1nesg"]
+
+[ext_resource type="Theme" uid="uid://b5urrkekc6dy1" path="res://theme/title.tres" id="1_m8c5h"]
+[ext_resource type="FontFile" uid="uid://c45k07ubhypbx" path="res://font/SyneMono-Regular.ttf" id="2_l06vh"]
+
+[sub_resource type="Theme" id="Theme_amhmn"]
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/mono_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/fonts/normal_font = ExtResource("2_l06vh")
+
+[node name="score" type="VBoxContainer"]
+size_flags_horizontal = 3
+
+[node name="scoretex" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_m8c5h")
+text = "score"
+scroll_active = false
+
+[node name="desc" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="spacer" type="Control" parent="desc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.01
+
+[node name="perfectpercentage" type="RichTextLabel" parent="desc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_amhmn")
+text = "pp"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="status" type="RichTextLabel" parent="desc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_amhmn")
+text = "status"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="spacer2" type="Control" parent="desc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.01

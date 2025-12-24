@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://idm4w1ky4o3h"]
+
+[ext_resource type="Script" uid="uid://bo4pd4onkk2c6" path="res://script/loading/Loading.cs" id="1_wmr0k"]
+[ext_resource type="FontFile" uid="uid://c45k07ubhypbx" path="res://font/SyneMono-Regular.ttf" id="2_7tihg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_baglu"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Loading" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_wmr0k")
+
+[node name="progress" type="ProgressBar" parent="Loading"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+theme_override_styles/fill = SubResource("StyleBoxFlat_baglu")
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="load" type="RichTextLabel" parent="Loading"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+theme_override_colors/default_color = Color(0.44097933, 0.44097927, 0.44097927, 1)
+theme_override_fonts/normal_font = ExtResource("2_7tihg")
+theme_override_font_sizes/normal_font_size = 80
+text = "loading..."
+fit_content = true

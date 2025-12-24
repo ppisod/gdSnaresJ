@@ -16,7 +16,13 @@ public partial class Game : Control {
 
 	private Metronome metronome;
 
-	public int PreBeats;
+	private bool playing = false;
+	private AudioStream songAudio;
+	private AudioStreamPlayer audioPlayer;
+
+	public int countInBeats;
+	public int trueBeats = 0;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -35,14 +41,34 @@ public partial class Game : Control {
 		// this is when the BPM is correctly set
 		metronome = new Metronome(BeatmapPlaying.BPM, BeatmapPlaying.TimeSignatureNumerator, BeatmapPlaying.TimeSignatureDenominator);
 
-		metronome.Start (); // give BeatmapPlaying.CountInBars bars before starting.
+		countInBeats = BeatmapPlaying.CountInBars * BeatmapPlaying.TimeSignatureNumerator;
 
 		BeatmapEvents = BeatmapPlaying.BeatmapEvents;
+
+		// load the music
+		songAudio = GD.Load <AudioStream> ( BeatmapPlaying.songPath );
+		audioPlayer = new AudioStreamPlayer ();
+		AddChild ( audioPlayer );
+		audioPlayer.Stream = songAudio;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		timeInScene += delta;
+		var beats = metronome.TotalBeats;
+		if (!playing)
+		{
+			if (beats == countInBeats) // TODO: this is a buggy check
+			{
+				playing = true;
+
+			}
+
+			return;
+		}
+
 	}
+
+
 }

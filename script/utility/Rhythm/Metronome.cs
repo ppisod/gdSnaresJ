@@ -241,6 +241,26 @@ public class Metronome : IDisposable
         return SecondsPerBeat * _numerator;
     }
 
+    /// <summary>
+    /// Gets the current total beats as a double (completed beats + current beat progress)
+    /// </summary>
+    public double GetCurrentTotalBeats()
+    {
+        // When not running, there is no fractional progress
+        if (!_isRunning || !_stopwatch.IsRunning)
+            return TotalBeats;
+
+        long currentTicks = _stopwatch.ElapsedTicks;
+        double beatIntervalTicks = SecondsPerBeat * Stopwatch.Frequency;
+
+        if (beatIntervalTicks <= 0)
+            return TotalBeats;
+
+        double ticksInCurrentBeat = currentTicks - _lastBeatTicks;
+        double progress = Math.Clamp(ticksInCurrentBeat / beatIntervalTicks, 0, 1);
+        return TotalBeats + progress;
+    }
+
     private void CalculateSecondsPerBeat()
     {
         SecondsPerBeat = 60.0 / _beatsPerMinute;

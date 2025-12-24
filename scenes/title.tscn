@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://s64w5pfkjab0"]
+
+[ext_resource type="Theme" uid="uid://b5urrkekc6dy1" path="res://theme/title.tres" id="1_4ignj"]
+[ext_resource type="Script" uid="uid://bt836ras0dhaq" path="res://script/scene/Title.cs" id="1_wosw1"]
+[ext_resource type="PackedScene" uid="uid://hcmlmdp16pb" path="res://components/hoverGrowLabel.tscn" id="3_p6dhs"]
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wosw1")
+
+[node name="title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.2
+theme = ExtResource("1_4ignj")
+text = "snaresv0.0.1"
+
+[node name="buttons" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.6
+vertical = true
+
+[node name="play" parent="buttons" instance=ExtResource("3_p6dhs")]
+layout_mode = 2
+text = "play"
+
+[node name="config" parent="buttons" instance=ExtResource("3_p6dhs")]
+layout_mode = 2
+text = "config"
+
+[node name="quit" parent="buttons" instance=ExtResource("3_p6dhs")]
+layout_mode = 2
+text = "quit"

@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpvq6fs1mlgwu"]
+
+[ext_resource type="Script" uid="uid://dv2wfl20hxmrq" path="res://script/scene/BeatmapSelection.cs" id="1_iceuv"]
+[ext_resource type="Theme" uid="uid://csus6yomnswu7" path="res://theme/bodytitle.tres" id="2_b3k5l"]
+[ext_resource type="Theme" uid="uid://73g4bjvoo7kj" path="res://theme/bodysubtitle.tres" id="3_n1um7"]
+[ext_resource type="PackedScene" uid="uid://fojtefrgahix" path="res://components/slipButton.tscn" id="5_d3ha1"]
+
+[node name="BeatmapSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iceuv")
+
+[node name="VBody" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="VBody"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SelectYourBeatmap" type="RichTextLabel" parent="VBody/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+theme = ExtResource("2_b3k5l")
+text = "Select Your Beatmap!"
+
+[node name="OpenFolder" type="RichTextLabel" parent="VBody/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_n1um7")
+text = "Open Beatmap Folder"
+fit_content = true
+
+[node name="Selector" type="HBoxContainer" parent="VBody"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.0
+
+[node name="spacer_1" type="Control" parent="VBody/Selector"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="scrollable" type="ScrollContainer" parent="VBody/Selector"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="beatmaps" type="VBoxContainer" parent="VBody/Selector/scrollable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="spacer_2" type="Control" parent="VBody/Selector"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="back" parent="." instance=ExtResource("5_d3ha1")]
+layout_mode = 1
+
+[node name="play" parent="." instance=ExtResource("5_d3ha1")]
+layout_mode = 1
+anchor_left = 0.89
+anchor_right = 0.99
+
+[node name="detectBeatmaps" type="Timer" parent="."]

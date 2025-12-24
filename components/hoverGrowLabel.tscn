@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://hcmlmdp16pb"]
+
+[ext_resource type="Theme" uid="uid://bql6wnrka4abn" path="res://theme/subtitle.tres" id="1_enfp5"]
+[ext_resource type="Script" uid="uid://ilwad1p0qqck" path="res://script/components/HoverGrowLabel.cs" id="2_vtcu5"]
+
+[node name="hoverGrowLabel" type="RichTextLabel"]
+size_flags_vertical = 3
+theme = ExtResource("1_enfp5")
+text = "label"
+fit_content = true
+scroll_active = false
+script = ExtResource("2_vtcu5")

@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://fojtefrgahix"]
+
+[ext_resource type="Script" uid="uid://cohl5y8qvk7s0" path="res://script/components/SlipButton.cs" id="1_h4o76"]
+[ext_resource type="Theme" uid="uid://dbt1lh6wg1w5b" path="res://theme/beatmap_desc.tres" id="1_s3d8y"]
+
+[sub_resource type="Gradient" id="Gradient_oufwr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h4o76"]
+gradient = SubResource("Gradient_oufwr")
+
+[sub_resource type="Gradient" id="Gradient_kwc6x"]
+colors = PackedColorArray(0, 0, 0, 1, 0.4915833, 0.49158323, 0.49158323, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nrosw"]
+gradient = SubResource("Gradient_kwc6x")
+fill_from = Vector2(1, 1)
+
+[node name="slipButton" type="Control"]
+visible = false
+layout_mode = 3
+anchor_left = 0.01
+anchor_top = 0.9
+anchor_right = 0.14
+anchor_bottom = 1.4
+script = ExtResource("1_h4o76")
+
+[node name="outline" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_h4o76")
+expand_mode = 1
+
+[node name="backTex" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_nrosw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+theme = ExtResource("1_s3d8y")
+text = "button"
+horizontal_alignment = 1
+vertical_alignment = 1

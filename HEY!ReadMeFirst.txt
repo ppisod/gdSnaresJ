@@ -1,0 +1,1 @@
+This is the folder where all of your beatmaps are stored. Drag unzipped folders into this directory to load beatmaps!

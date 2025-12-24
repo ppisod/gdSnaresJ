@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8nyxeiur2b43"]
+
+[ext_resource type="Script" uid="uid://dd865odhb6xh" path="res://script/components/BeatmapEntry.cs" id="1_gubhl"]
+[ext_resource type="Theme" uid="uid://nwoa7k541kxv" path="res://theme/beatmap_title.tres" id="1_okn4p"]
+[ext_resource type="Theme" uid="uid://dbt1lh6wg1w5b" path="res://theme/beatmap_desc.tres" id="2_65d08"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gubhl"]
+
+[node name="beatmapEntry" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+script = ExtResource("1_gubhl")
+
+[node name="beatmapImage" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="img" type="TextureRect" parent="beatmapImage"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("PlaceholderTexture2D_gubhl")
+expand_mode = 1
+
+[node name="spacer_2" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="beatmapInfo" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="beatmapTitle" type="RichTextLabel" parent="beatmapInfo"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_okn4p")
+scroll_active = false
+
+[node name="beatmapDesc" type="RichTextLabel" parent="beatmapInfo"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+theme = ExtResource("2_65d08")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxpuebg4fn1nf"]
+
+[ext_resource type="Script" uid="uid://7s1v73qh4bcr" path="res://script/scene/Default.cs" id="1_e232d"]
+
+[node name="Default" type="Node2D"]
+script = ExtResource("1_e232d")
