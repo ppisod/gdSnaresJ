@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgone3cy5s00k"]
+[gd_scene load_steps=5 format=3 uid="uid://dgone3cy5s00k"]
 
+[ext_resource type="Script" uid="uid://c8rbrjf6t6vpy" path="res://script/components/SliderTrack.cs" id="1_k7hxm"]
 [ext_resource type="Script" uid="uid://b82ei57sgrl22" path="res://script/components/Slider.cs" id="1_sonvr"]
 
 [sub_resource type="Theme" id="Theme_k7hxm"]
@@ -7,6 +8,7 @@
 [sub_resource type="Theme" id="Theme_gkgn7"]
 
 [node name="Control" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,8 +17,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_k7hxm")
 
 [node name="slider" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
