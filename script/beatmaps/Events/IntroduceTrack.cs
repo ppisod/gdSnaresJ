@@ -38,7 +38,7 @@ public class IntroduceTrack : TimelyEvent {
         string eventName = L.V <string> ( e, "event", Variant.Type.String );
         if (eventName != "introduceTrack") throw new ArgumentException("Unknown event name passed into IntroduceTrack: " + eventName);
 
-        int trackId = L.V <int> ( e, "trackId", Variant.Type.Int );
+        int trackId = (int) L.N ( e, "trackId");
         trackToBeIntroduced.id = trackId;
 
         string requires = L.V <string> ( e, "requires", Variant.Type.String );
@@ -55,7 +55,7 @@ public class IntroduceTrack : TimelyEvent {
                 break;
         }
 
-        int beatsPerLength = L.V <int> ( e, "beatsPerLength", Variant.Type.Int );
+        int beatsPerLength = (int) L.N ( e, "beatsPerLength");
         trackToBeIntroduced.beatsPerLength = beatsPerLength;
 
         Array tickers = L.V<Array> ( e, "tickers", Variant.Type.Array );
