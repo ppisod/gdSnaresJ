@@ -6,8 +6,23 @@
 
 [sub_resource type="Theme" id="Theme_gkgn7"]
 
-[node name="slider" type="MarginContainer"]
-visible = false
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="slider" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_k7hxm")
 theme_override_constants/margin_left = 0
@@ -16,12 +31,12 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 script = ExtResource("1_sonvr")
 
-[node name="baseColor" type="ColorRect" parent="."]
+[node name="baseColor" type="ColorRect" parent="slider"]
 layout_mode = 2
 theme = SubResource("Theme_gkgn7")
 color = Color(0.09430439, 0.094304405, 0.09430439, 1)
 
-[node name="slider" type="ColorRect" parent="baseColor"]
+[node name="slider" type="ColorRect" parent="slider/baseColor"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.01

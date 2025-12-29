@@ -3,6 +3,8 @@ using System;
 
 public partial class Slider : MarginContainer {
 
+	public bool @fixed = false;
+
 	public void fixMargin ( ) {
 		float heightOfCont = Size.Y;
 		float paddingToApply = ( heightOfCont - maxHeight ) / 2;
@@ -13,6 +15,7 @@ public partial class Slider : MarginContainer {
 		AddThemeConstantOverride ( "margin_top", (int) paddingToApply );
 		AddThemeConstantOverride ( "margin_bottom", (int) paddingToApply );
 		Visible = true;
+		@fixed = true;
 	}
 
 	public int LMarg = 10;

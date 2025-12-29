@@ -22,6 +22,7 @@ public partial class Game : Control {
 
 	public int countInBeats;
 	public int trueBeats = 0;
+	public double startDelay = 0;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -52,21 +53,61 @@ public partial class Game : Control {
 		audioPlayer.Stream = songAudio;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		timeInScene += delta;
 		var beats = metronome.TotalBeats;
+
+		if (startDelay > 0)
+		{
+			startDelay -= delta;
+			return;
+		}
+
+		if (startDelay < 0)
+		{
+			startDelay = 0;
+			// reset metronome
+			metronome.Stop ();
+			metronome.Reset ();
+			metronome.Start ();
+		}
+
 		if (!playing)
 		{
 			if (beats == countInBeats) // TODO: this is a buggy check
 			{
 				playing = true;
-
+				PlaySequence ();
 			}
-
 			return;
 		}
+		// Process Events
+		ProcessEvents();
+	}
+
+	public void CheckForInitialEvents ( ) {
+		foreach (TimelyEvent te in BeatmapPlaying.BeatmapEvents.events)
+		{
+			if (te is IntroduceTrack introduceTrack)
+			{
+				if (Math.Abs ( introduceTrack.beat - 0f ) < 0.0001) // if it is near the start
+				{
+					// introduce it at countdown
+				}
+			}
+		}
+	}
+
+	public void PlaySequence ( ) {
+		audioPlayer.Play ();
+		// initial startDelay
+		startDelay = BeatmapPlaying.startMs;
+		// after initial startDelay; we restart the metronome to ensure it is in sync with the song metronome
+	}
+
+	public void ProcessEvents ( ) {
+		var currentBeatD = metronome.GetCurrentTotalBeats ();
 
 	}
 

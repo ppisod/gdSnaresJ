@@ -4,14 +4,11 @@ using snaresJ.script.beatmaps.Enum;
 
 namespace snaresJ.script.beatmaps.Events;
 
-public class EventCollection {
+public class EventCollection ( double initialBeatsPerMinute ) {
+
     public List <TimelyEvent> events = new ();
     public List <double> eventsTimestamps = new ();
-    public double initialBeatsPerMinute; // TODO: set all BPM objects to be float/double
-
-    public EventCollection ( double initialBeatsPerMinute ) {
-        this.initialBeatsPerMinute = initialBeatsPerMinute;
-    }
+    public double initialBeatsPerMinute = initialBeatsPerMinute; // TODO: set all BPM objects to be float/double
 
     public void Add ( TimelyEvent evt ) {
         // find where to add the event.
