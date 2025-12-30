@@ -10,8 +10,12 @@ public class EventCollection ( double initialBeatsPerMinute ) {
     public List <double> eventsTimestamps = new ();
     public double initialBeatsPerMinute = initialBeatsPerMinute; // TODO: set all BPM objects to be float/double
 
-    public List <TimelyEvent> rhythmObjects;
-    public List <TimelyEvent> sceneEvents;
+    public List <TimelyEvent> rhythmObjects = null!;
+    public List <TimelyEvent> sceneEvents = null!;
+
+    // anything exceeding these will not be processed; only the next 50 will be processed per tick
+    public int rhythmObjectPollLimit = 50;
+    public int sceneEventPollLimit = 15;
 
     public void Add ( TimelyEvent evt ) {
         // find where to add the event.

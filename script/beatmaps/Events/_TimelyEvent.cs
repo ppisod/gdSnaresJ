@@ -12,6 +12,8 @@ public class TimelyEvent {
     public double beat;
     public TimingUsing timingUsing;
 
+    public bool processed = false;
+
     // Events to add:
     /*
      * stopMetronome
