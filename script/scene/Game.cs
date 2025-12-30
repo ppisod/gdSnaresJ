@@ -122,7 +122,10 @@ public partial class Game : Control {
 	private void PreProcessEvents ( ) {
 		foreach (TimelyEvent t in BeatmapEvents.events)
 		{
+			if (t is IntroduceTrack ev)
+			{
 
+			}
 		}
 	}
 

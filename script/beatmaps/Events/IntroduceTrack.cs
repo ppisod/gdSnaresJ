@@ -4,6 +4,7 @@ using Godot.Collections;
 using snaresJ.script.beatmaps.Enum;
 using snaresJ.script.beatmaps.Objects;
 using snaresJ.script.utility;
+using snaresJ.script.utility.Rhythm;
 using Array = Godot.Collections.Array;
 
 namespace snaresJ.script.beatmaps.Events;
@@ -14,6 +15,10 @@ public class IntroduceTrack : TimelyEvent {
 
     public Track GetTrackObject ( ) {
         return trackToBeIntroduced;
+    }
+
+    public void SetTrackMetronome ( Metronome metronome ) {
+        trackToBeIntroduced.usingMetronome = metronome;
     }
 
     /// <summary>
