@@ -37,5 +37,14 @@ public class EventCollection ( double initialBeatsPerMinute ) {
         }
         events.Insert ( indx, evt );
         eventsTimestamps.Insert ( indx, evt.timestampInMs ( initialBeatsPerMinute ) );
+
+        CustomBehaviourAdd ( evt );
+    }
+
+    private void CustomBehaviourAdd ( TimelyEvent evt ) {
+        if (evt is IntroduceTrack e)
+        {
+            Add ( new StartDisplayingTrack ( e ) );
+        }
     }
 }
