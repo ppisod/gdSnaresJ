@@ -88,12 +88,16 @@ public class TimelyEvent {
         return beatsPerMillisecond * beat;
     }
 
-    public bool hasPassedBeat ( double beat ) {
-        return this.beat <= beat;
+    public bool hasPassedBeat ( double k ) {
+        return beat <= k;
     }
 
-    public double hasPassedBeats ( double beat ) {
-        return hasPassedBeat(beat) ? this.beat - beat : 0d;
+    public double hasPassedBeats ( double k ) {
+        return hasPassedBeat(k) ? beat - k : 0d;
+    }
+
+    public bool hasPassedBefore ( double k, double pre ) {
+        return beat - pre <= k;
     }
 
 }

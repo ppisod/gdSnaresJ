@@ -115,7 +115,7 @@ public partial class Game : Control {
 		var currentBeatD = metronome.GetCurrentTotalBeats ();
 		foreach (TimelyEvent sceneEvent in BeatmapEvents.sceneEvents.GetNext ( BeatmapEvents.sceneEventPollLimit ))
 		{
-
+			sceneEvent.hasPassedBeat ( currentBeatD );
 		}
 	}
 

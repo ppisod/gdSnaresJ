@@ -4,6 +4,8 @@ using snaresJ.script.beatmaps.Objects;
 
 public partial class SliderTrack : Control {
 
+	public bool Active = false;
+
 	public Slider slider;
 
 	public Track track;
