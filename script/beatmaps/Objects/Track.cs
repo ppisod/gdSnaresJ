@@ -5,7 +5,7 @@ using snaresJ.script.utility.Rhythm;
 namespace snaresJ.script.beatmaps.Objects;
 
 public class Track {
-    public List <Ticker> tickers;
+    public List <Ticker> tickers = [];
     public TriggerRequirement req;
     public int id;
     public int beatsPerLength;
