@@ -9,6 +9,10 @@ public class Track {
     public TriggerRequirement req;
     public int id;
     public int beatsPerLength;
+
+    // these are added later
     public Metronome usingMetronome;
     public double whichBeatStartedOn;
+    public double introductionBeats;
+
 }
