@@ -124,7 +124,7 @@ public partial class Game : Control {
 		{
 			if (t is IntroduceTrack ev)
 			{
-
+				ev.SetTrackMetronome( metronome );
 			}
 		}
 	}
