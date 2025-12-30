@@ -58,6 +58,8 @@ public class IntroduceTrack : TimelyEvent {
         }
 
         trackToBeIntroduced.introductionBeats = L.N ( e, "introductionBeats" );
+        trackToBeIntroduced.whichBeatStartedOn = beat; // can be unsafe is using time? just use beats cro
+        // can we remove usage of time ty?
 
         isValid = true;
     }
