@@ -60,6 +60,8 @@ public partial class Game : Control {
 		{
 			return;
 		}
+
+		// update time
 		timeInScene += delta;
 		var beats = metronome.TotalBeats;
 
@@ -72,7 +74,7 @@ public partial class Game : Control {
 		if (startDelay < 0)
 		{
 			startDelay = 0;
-			// reset metronome
+			// reset metronome to ensure sync?
 			metronome.Stop ();
 			metronome.Reset ();
 			metronome.Start ();
@@ -94,14 +96,11 @@ public partial class Game : Control {
 	public void CheckForInitialEvents ( ) {
 		foreach (TimelyEvent te in bm.BeatmapEvents.events)
 		{
-			if (te is IntroduceTrack introduceTrack)
+			if (te is IntroduceTrack e && Math.Abs ( e.beat - 0f ) <= countInBeats)
 			{
-				if (Math.Abs ( introduceTrack.beat - 0f ) <= countInBeats ) // if it is near the start
-				{
-					// introduce it at countdown
-
-				}
+				sliders.AddTrackToScene ( e.GetTrackObject () );
 			}
+			// add other initial event(s)' pre here.
 		}
 	}
 
@@ -109,7 +108,6 @@ public partial class Game : Control {
 		audioPlayer.Play ();
 		// initial startDelay
 		startDelay = bm.startMs;
-		// after initial startDelay; we restart the metronome to ensure it is in sync with the song metronome
 	}
 
 	public void ProcessEvents ( ) {
