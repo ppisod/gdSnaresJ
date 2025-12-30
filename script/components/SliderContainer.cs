@@ -9,7 +9,7 @@ public partial class SliderContainer : Control
 	public List<int> sliderIds = [];
 
 	private PackedScene sliderTrackScene;
-	private MarginContainer sliderTrackContainer;
+	private VBoxContainer sliderTrackContainer;
 	private bool initialized = false;
 
 	/// <summary>
@@ -46,7 +46,7 @@ public partial class SliderContainer : Control
 	}
 
 	private void GetChildren ( ) {
-		sliderTrackContainer = GetNode<MarginContainer> ("sliders");
+		sliderTrackContainer = GetNode<VBoxContainer> ("sliders");
 	}
 
 	public override void _Ready()

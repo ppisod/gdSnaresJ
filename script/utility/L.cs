@@ -25,7 +25,7 @@ public static class L {
 		e.TryGetValue ( name, out var k );
 		// @ToBeRemoved
 		GD.Print($"Type of '{name}': {k.VariantType}, Value: {k}");
-		if (k.VariantType != Variant.Type.Float || k.VariantType != Variant.Type.Int)
+		if (k.VariantType != Variant.Type.Float && k.VariantType != Variant.Type.Int)
 		{
 			throw new ArgumentException ( name + " argument type (supposed to be a number) didn't match." );
 		}
