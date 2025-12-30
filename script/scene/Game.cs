@@ -113,6 +113,7 @@ public partial class Game : Control {
 
 	public void ProcessEvents ( ) {
 		var currentBeatD = metronome.GetCurrentTotalBeats ();
+
 	}
 
 	private void PreProcessEvents ( ) {

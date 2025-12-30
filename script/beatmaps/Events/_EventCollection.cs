@@ -54,6 +54,8 @@ public class EventCollection ( double initialBeatsPerMinute ) {
         foreach ( var evt in events )
         {
             if (evt is IntroduceTrack) sceneEvents.Add ( evt );
+            if (evt is StartDisplayingTrack) sceneEvents.Add ( evt );
+            
             if (evt is Snare) rhythmObjects.Add ( evt );
         }
     }
