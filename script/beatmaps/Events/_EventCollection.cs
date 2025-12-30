@@ -44,7 +44,7 @@ public class EventCollection ( double initialBeatsPerMinute ) {
     private void CustomBehaviourAdd ( TimelyEvent evt ) {
         if (evt is IntroduceTrack e)
         {
-            Add ( new StartDisplayingTrack ( e ) );
+            StartDisplayingTrack.AddIntroTrackEv ( e );
         }
     }
 }
