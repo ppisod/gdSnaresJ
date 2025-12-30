@@ -26,34 +26,11 @@ public partial class Game : Control {
 	public int trueBeats = 0;
 	public double startDelay = 0;
 
-	private void GetChildren ( ) {
-		back = GetNode<SlipButton>("Quit");
-		back.buttonLabelText = "quit";
-		back.clicked += ( ) =>
-		{
-			State.instance.LoadLargeScene ( Scenes.TITLE, Scenes.BEATMAPS );
-		};
-		sliders = GetNode<SliderContainer> ("body/game/sliderContainer");
-	}
-
-	private void initializeMetronome ( ) {
-		metronome = new Metronome(bm.BPM, bm.TimeSignatureNumerator, bm.TimeSignatureDenominator);
-
-		countInBeats = bm.CountInBars * bm.TimeSignatureNumerator;
-	}
-
-	private void initializeAudio ( ) {
-		songAudio = GD.Load <AudioStream> ( bm.songPath );
-		audioPlayer = new AudioStreamPlayer ();
-		AddChild ( audioPlayer );
-		audioPlayer.Stream = songAudio;
-	}
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 
-		GetChildren ();
+		initializeChildren ();
 
 		// ToBeRemoved
 		GD.Print ( State.instance.selectedBeatmap.beatmapPath );

@@ -13,5 +13,8 @@
     <Compile Update="script\beatmaps\BeatmapEventData.cs">
       <DependentUpon>Beatmap.cs</DependentUpon>
     </Compile>
+    <Compile Update="script\scene\GameInitialization.cs">
+      <DependentUpon>Game.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
