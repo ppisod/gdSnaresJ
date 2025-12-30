@@ -8,6 +8,7 @@ using snaresJ.script.utility.Rhythm;
 
 public partial class Game : Control {
 	private SlipButton back;
+	private SliderContainer sliders;
 
 	private double timeInScene;
 
@@ -25,15 +26,36 @@ public partial class Game : Control {
 	public int trueBeats = 0;
 	public double startDelay = 0;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+	private void GetChildren ( ) {
 		back = GetNode<SlipButton>("Quit");
 		back.buttonLabelText = "quit";
 		back.clicked += ( ) =>
 		{
 			State.instance.LoadLargeScene ( Scenes.TITLE, Scenes.BEATMAPS );
 		};
+		sliders = GetNode<SliderContainer> ("body/game/sliderContainer");
+	}
+
+	private void initializeMetronome ( ) {
+		metronome = new Metronome(bm.BPM, bm.TimeSignatureNumerator, bm.TimeSignatureDenominator);
+
+		countInBeats = bm.CountInBars * bm.TimeSignatureNumerator;
+	}
+
+	private void initializeAudio ( ) {
+		songAudio = GD.Load <AudioStream> ( bm.songPath );
+		audioPlayer = new AudioStreamPlayer ();
+		AddChild ( audioPlayer );
+		audioPlayer.Stream = songAudio;
+	}
+
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+
+		GetChildren ();
+
+		// ToBeRemoved
 		GD.Print ( State.instance.selectedBeatmap.beatmapPath );
 		bm = State.instance.selectedBeatmap;
 
@@ -41,20 +63,17 @@ public partial class Game : Control {
 		bm.LoadEvents();
 
 		// this is when the BPM is correctly set
-		metronome = new Metronome(bm.BPM, bm.TimeSignatureNumerator, bm.TimeSignatureDenominator);
-
-		countInBeats = bm.CountInBars * bm.TimeSignatureNumerator;
+		initializeMetronome ();
 
 		BeatmapEvents = bm.BeatmapEvents;
 
 		// load the music
-		songAudio = GD.Load <AudioStream> ( bm.songPath );
-		audioPlayer = new AudioStreamPlayer ();
-		AddChild ( audioPlayer );
-		audioPlayer.Stream = songAudio;
+		initializeAudio ();
 
+		// ...
 		PreProcessEvents ();
 
+		// gets rid of exceptions
 		initialized = true;
 	}
 
@@ -103,6 +122,7 @@ public partial class Game : Control {
 				if (Math.Abs ( introduceTrack.beat - 0f ) <= countInBeats ) // if it is near the start
 				{
 					// introduce it at countdown
+
 				}
 			}
 		}

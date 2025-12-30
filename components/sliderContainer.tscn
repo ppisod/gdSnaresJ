@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cnlv5ufarvscp"]
+[gd_scene load_steps=2 format=3 uid="uid://cnlv5ufarvscp"]
+
+[ext_resource type="Script" uid="uid://vxvob55hko0o" path="res://script/components/SliderContainer.cs" id="1_a0lmm"]
 
 [node name="sliderContainer" type="Control"]
 layout_mode = 3
@@ -8,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+script = ExtResource("1_a0lmm")
 
 [node name="sliders" type="VBoxContainer" parent="."]
 layout_mode = 1
