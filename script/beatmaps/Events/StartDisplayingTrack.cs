@@ -1,6 +1,10 @@
+using snaresJ.script.beatmaps.Objects;
+
 namespace snaresJ.script.beatmaps.Events;
 
 public class StartDisplayingTrack : TimelyEvent {
+
+    public Track track;
 
     public static TimelyEvent AddIntroTrackEv ( IntroduceTrack introduceTrackEvent ) {
         var theBeat = introduceTrackEvent.beat - introduceTrackEvent.GetTrackObject ().introductionBeats;
@@ -11,7 +15,8 @@ public class StartDisplayingTrack : TimelyEvent {
 
         return new StartDisplayingTrack ( )
         {
-            beat = theBeat
+            beat = theBeat,
+            track = introduceTrackEvent.GetTrackObject ()
         };
     }
 
