@@ -10,6 +10,9 @@ public class EventCollection ( double initialBeatsPerMinute ) {
     public List <double> eventsTimestamps = new ();
     public double initialBeatsPerMinute = initialBeatsPerMinute; // TODO: set all BPM objects to be float/double
 
+    public List <TimelyEvent> rhythmObjects;
+    public List <TimelyEvent> sceneEvents;
+
     public void Add ( TimelyEvent evt ) {
         // find where to add the event.
         // TODO: This function can actually be reversed for optimality,
@@ -39,6 +42,16 @@ public class EventCollection ( double initialBeatsPerMinute ) {
         eventsTimestamps.Insert ( indx, evt.timestampInMs ( initialBeatsPerMinute ) );
 
         CustomBehaviourAdd ( evt );
+    }
+
+    public void SortEventsIntoCategories ( ) {
+        rhythmObjects = [];
+        sceneEvents = [];
+        foreach ( var evt in events )
+        {
+            if (evt is IntroduceTrack) sceneEvents.Add ( evt );
+            if (evt is Snare) rhythmObjects.Add ( evt );
+        }
     }
 
     private void CustomBehaviourAdd ( TimelyEvent evt ) {

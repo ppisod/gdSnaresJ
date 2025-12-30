@@ -43,6 +43,7 @@ public partial class Game : Control {
 		initializeMetronome ();
 
 		BeatmapEvents = bm.BeatmapEvents;
+		BeatmapEvents.SortEventsIntoCategories();
 
 		// load the music
 		initializeAudio ();
@@ -112,8 +113,6 @@ public partial class Game : Control {
 
 	public void ProcessEvents ( ) {
 		var currentBeatD = metronome.GetCurrentTotalBeats ();
-		// it's not efficient to loop through all events here; so we SHOULD, before this,
-		// TODO: add a FAKE timely event for track introduction.
 	}
 
 	private void PreProcessEvents ( ) {
