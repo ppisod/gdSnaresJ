@@ -5,6 +5,7 @@ using snaresJ.script.utility;
 public partial class Slider : MarginContainer {
 
 	public bool @fixed = false;
+	public int id = 0;
 
 	public void fixMargin ( ) {
 		float heightOfCont = Size.Y;

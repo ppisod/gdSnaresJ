@@ -15,6 +15,7 @@ public partial class Game : Control {
 	private EventCollection BeatmapEvents;
 
 	private Metronome metronome;
+	private bool initialized = false;
 
 	private bool playing = false;
 	private AudioStream songAudio;
@@ -51,10 +52,16 @@ public partial class Game : Control {
 		audioPlayer = new AudioStreamPlayer ();
 		AddChild ( audioPlayer );
 		audioPlayer.Stream = songAudio;
+
+		initialized = true;
 	}
 
 	public override void _Process(double delta)
 	{
+		if (!initialized)
+		{
+			return;
+		}
 		timeInScene += delta;
 		var beats = metronome.TotalBeats;
 
@@ -91,7 +98,7 @@ public partial class Game : Control {
 		{
 			if (te is IntroduceTrack introduceTrack)
 			{
-				if (Math.Abs ( introduceTrack.beat - 0f ) < 0.0001) // if it is near the start
+				if (Math.Abs ( introduceTrack.beat - 0f ) <= countInBeats ) // if it is near the start
 				{
 					// introduce it at countdown
 				}

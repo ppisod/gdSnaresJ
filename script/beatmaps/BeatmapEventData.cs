@@ -35,12 +35,12 @@ public partial class Beatmap {
 
         Dictionary beatmap = (Dictionary) beatmapObject;
 
-        startMs = L.V <float> ( beatmap, "startMs", Variant.Type.Float );
-        startBeat = L.V <float> ( beatmap, "startBeats", Variant.Type.Float );
-        endBeat = L.V <float> ( beatmap, "endBeats", Variant.Type.Float );
-        TimeSignatureNumerator = L.V <int> (beatmap, "tsig_num",  Variant.Type.Int);
-        TimeSignatureDenominator = L.V <int> ( beatmap, "tsig_denom", Variant.Type.Int);
-        CountInBars = L.V <int> ( beatmap, "countInBars", Variant.Type.Int);
+        startMs = L.N ( beatmap, "startMs");
+        startBeat = L.N ( beatmap, "startBeats");
+        endBeat = L.N ( beatmap, "endBeats" );
+        TimeSignatureNumerator = (int) L.N (beatmap, "tsig_num");
+        TimeSignatureDenominator = (int) L.N ( beatmap, "tsig_denom");
+        CountInBars = (int) L.N ( beatmap, "countInBars");
         BPM = L.V <double> ( beatmap, "bpm", Variant.Type.Float );
 
         Array gameEvents = L.V <Array> ( beatmap, "gameEvents", Variant.Type.Array );
