@@ -16,5 +16,8 @@
     <Compile Update="script\scene\GameInitialization.cs">
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
+    <Compile Update="script\scene\GameProcessing.cs">
+      <DependentUpon>Game.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
