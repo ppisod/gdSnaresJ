@@ -8,8 +8,8 @@ namespace snaresJ.script.beatmaps.Events;
 
 public class TimelyEvent {
     public bool isValid = false;
-    public float time;
-    public float beat;
+    public double time;
+    public double beat;
     public TimingUsing timingUsing;
 
     // Events to add:
