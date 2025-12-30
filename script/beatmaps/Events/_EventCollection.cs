@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
 using snaresJ.script.beatmaps.Enum;
+using snaresJ.script.utility;
 
 namespace snaresJ.script.beatmaps.Events;
 
 public class EventCollection ( double initialBeatsPerMinute ) {
 
-    public List <TimelyEvent> events = new ();
-    public List <double> eventsTimestamps = new ();
+    public Tracker <TimelyEvent> events = new ();
     public double initialBeatsPerMinute = initialBeatsPerMinute; // TODO: set all BPM objects to be float/double
 
-    public List <TimelyEvent> rhythmObjects = null!;
-    public List <TimelyEvent> sceneEvents = null!;
+    public Tracker <TimelyEvent> rhythmObjects = null!;
+    public Tracker <TimelyEvent> sceneEvents = null!;
 
     // anything exceeding these will not be processed; only the next 50 will be processed per tick
     public int rhythmObjectPollLimit = 50;
@@ -27,7 +27,6 @@ public class EventCollection ( double initialBeatsPerMinute ) {
         if (events.Count == 0)
         {
             events.Add(evt);
-            eventsTimestamps.Add ( evt.timestampInMs ( initialBeatsPerMinute ) );
             return;
         }
         int indx = 0;
@@ -38,12 +37,10 @@ public class EventCollection ( double initialBeatsPerMinute ) {
             if ( Math.Abs ( timestampListItem - timestampNewItem ) < 0.0001d || timestampNewItem < timestampListItem )
             {
                 events.Insert ( indx, evt );
-                eventsTimestamps.Insert ( indx, timestampNewItem );
                 return;
             }
         }
         events.Insert ( indx, evt );
-        eventsTimestamps.Insert ( indx, evt.timestampInMs ( initialBeatsPerMinute ) );
 
         CustomBehaviourAdd ( evt );
     }
