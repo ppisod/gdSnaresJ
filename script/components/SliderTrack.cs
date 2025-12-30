@@ -1,9 +1,12 @@
 using Godot;
 using System;
+using snaresJ.script.beatmaps.Objects;
 
 public partial class SliderTrack : Control {
 
 	public Slider slider;
+
+	public Track track;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		slider = GetNode <Slider> ( "slider" );

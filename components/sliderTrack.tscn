@@ -7,7 +7,7 @@
 
 [sub_resource type="Theme" id="Theme_gkgn7"]
 
-[node name="Control" type="Control"]
+[node name="SliderTrack" type="Control"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
