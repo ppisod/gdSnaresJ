@@ -74,6 +74,10 @@ public class TimelyEvent {
     }
 
     public double timestampInMs ( double bpm ) {
+        // it's not as simple as this
+        // instead it's the area under the BPM curve
+        // if bpm is not constant
+
         var tu = timingUsing;
         if (tu == TimingUsing.TIME)
         {
@@ -82,6 +86,14 @@ public class TimelyEvent {
 
         double beatsPerMillisecond =  bpm / 60d / 1000d;
         return beatsPerMillisecond * beat;
+    }
+
+    public bool hasPassedBeat ( double beat ) {
+        return this.beat <= beat;
+    }
+
+    public double hasPassedBeats ( double beat ) {
+        return hasPassedBeat(beat) ? this.beat - beat : 0d;
     }
 
 }
