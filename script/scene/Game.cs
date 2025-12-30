@@ -11,7 +11,7 @@ public partial class Game : Control {
 
 	private double timeInScene;
 
-	private Beatmap BeatmapPlaying;
+	private Beatmap bm;
 	private EventCollection BeatmapEvents;
 
 	private Metronome metronome;
@@ -35,23 +35,25 @@ public partial class Game : Control {
 			State.instance.LoadLargeScene ( Scenes.TITLE, Scenes.BEATMAPS );
 		};
 		GD.Print ( State.instance.selectedBeatmap.beatmapPath );
-		BeatmapPlaying = State.instance.selectedBeatmap;
+		bm = State.instance.selectedBeatmap;
 
 		// load events
-		BeatmapPlaying.LoadEvents();
+		bm.LoadEvents();
 
 		// this is when the BPM is correctly set
-		metronome = new Metronome(BeatmapPlaying.BPM, BeatmapPlaying.TimeSignatureNumerator, BeatmapPlaying.TimeSignatureDenominator);
+		metronome = new Metronome(bm.BPM, bm.TimeSignatureNumerator, bm.TimeSignatureDenominator);
 
-		countInBeats = BeatmapPlaying.CountInBars * BeatmapPlaying.TimeSignatureNumerator;
+		countInBeats = bm.CountInBars * bm.TimeSignatureNumerator;
 
-		BeatmapEvents = BeatmapPlaying.BeatmapEvents;
+		BeatmapEvents = bm.BeatmapEvents;
 
 		// load the music
-		songAudio = GD.Load <AudioStream> ( BeatmapPlaying.songPath );
+		songAudio = GD.Load <AudioStream> ( bm.songPath );
 		audioPlayer = new AudioStreamPlayer ();
 		AddChild ( audioPlayer );
 		audioPlayer.Stream = songAudio;
+
+		PreProcessEvents ();
 
 		initialized = true;
 	}
@@ -94,7 +96,7 @@ public partial class Game : Control {
 	}
 
 	public void CheckForInitialEvents ( ) {
-		foreach (TimelyEvent te in BeatmapPlaying.BeatmapEvents.events)
+		foreach (TimelyEvent te in bm.BeatmapEvents.events)
 		{
 			if (te is IntroduceTrack introduceTrack)
 			{
@@ -109,13 +111,19 @@ public partial class Game : Control {
 	public void PlaySequence ( ) {
 		audioPlayer.Play ();
 		// initial startDelay
-		startDelay = BeatmapPlaying.startMs;
+		startDelay = bm.startMs;
 		// after initial startDelay; we restart the metronome to ensure it is in sync with the song metronome
 	}
 
 	public void ProcessEvents ( ) {
 		var currentBeatD = metronome.GetCurrentTotalBeats ();
+	}
 
+	private void PreProcessEvents ( ) {
+		foreach (TimelyEvent t in BeatmapEvents.events)
+		{
+
+		}
 	}
 
 
