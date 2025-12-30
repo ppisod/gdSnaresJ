@@ -17,21 +17,10 @@ public class IntroduceTrack : TimelyEvent {
     }
 
     /// <summary>
-    /// To be removed
+    /// introduces a track
     /// </summary>
-    public IntroduceTrack ( ) {
-        trackToBeIntroduced = new Track
-        {
-            req = TriggerRequirement.KEY,
-            id = 0
-        };
-        isValid = true;
-        trackToBeIntroduced.tickers.Add ( new Ticker ( 0, Tween.EaseType.In, Tween.TransitionType.Linear ) );
-        trackToBeIntroduced.tickers.Add ( new Ticker ( 0.25, Tween.EaseType.In, Tween.TransitionType.Linear ) );
-        trackToBeIntroduced.tickers.Add ( new Ticker ( 5, Tween.EaseType.In, Tween.TransitionType.Linear ) );
-        trackToBeIntroduced.tickers.Add ( new Ticker ( 0.75, Tween.EaseType.In, Tween.TransitionType.Linear ) );
-    }
-
+    /// <param name="e">event dictionary JSON object variant</param>
+    /// <exception cref="ArgumentException"></exception>
     public IntroduceTrack ( Dictionary e ) {
         trackToBeIntroduced = new Track ();
 
@@ -67,6 +56,9 @@ public class IntroduceTrack : TimelyEvent {
             Ticker t = new Ticker (tickerDict);
             trackToBeIntroduced.tickers.Add ( t );
         }
+
+        trackToBeIntroduced.introductionBeats = L.N ( e, "introductionBeats" );
+
         isValid = true;
     }
 
