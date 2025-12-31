@@ -62,7 +62,7 @@ public class IntroduceTrack : TimelyEvent {
 			trackToBeIntroduced.tickers.Add ( t );
 		}
 
-		trackToBeIntroduced.introductionBeats = L.N ( e, "introductionBeats" );
+		trackToBeIntroduced.introductionBeats = L.N ( e, "intro" );
 		trackToBeIntroduced.whichBeatStartedOn = beat; // can be unsafe is using time? just use beats cro
 		// can we remove usage of time ty?
 

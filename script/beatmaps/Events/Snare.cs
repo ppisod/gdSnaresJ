@@ -12,6 +12,6 @@ public class Snare : TimelyEvent {
     public Snare ( Dictionary e ) {
         string eventType = L.V <string> ( e, "event", Variant.Type.String );
         if (eventType != "snare") throw new ArgumentException ( "unsupported event type: " + eventType + " passed into snare" );
-        trackId = L.V <int> ( e, "trackId", Variant.Type.Int );
+        trackId = (int) L.N ( e, "trackId" );
     }
 }
