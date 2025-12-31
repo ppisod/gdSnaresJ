@@ -6,12 +6,12 @@ using snaresJ.script.utility;
 namespace snaresJ.script.beatmaps.Events;
 
 public class Snare : TimelyEvent {
-    public int trackId = 0;
-    public bool putOnScreen = false;
+	public int trackId = 0;
+	public bool putOnScreen = false;
 
-    public Snare ( Dictionary e ) {
-        string eventType = L.V <string> ( e, "event", Variant.Type.String );
-        if (eventType != "snare") throw new ArgumentException ( "unsupported event type: " + eventType + " passed into snare" );
-        trackId = (int) L.N ( e, "trackId" );
-    }
+	public Snare ( Dictionary e ) {
+		string eventType = L.V <string> ( e, "event", Variant.Type.String );
+		if (eventType != "snare") throw new ArgumentException ( "unsupported event type: " + eventType + " passed into snare" );
+		trackId = (int) L.N ( e, "trackId" );
+	}
 }
