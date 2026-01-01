@@ -22,7 +22,7 @@ public partial class Game : Control {
 	private AudioStream songAudio;
 	private AudioStreamPlayer audioPlayer;
 
-	private GameState state = GameState.LOADING;
+	public GameState state = GameState.LOADING;
 
 	public int countInBeats;
 	public int trueBeats = 0;

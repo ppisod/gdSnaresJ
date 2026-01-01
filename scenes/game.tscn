@@ -85,3 +85,4 @@ layout_mode = 1
 
 [node name="debugMenu" parent="." instance=ExtResource("5_iywne")]
 layout_mode = 1
+mouse_filter = 2

@@ -34,6 +34,6 @@ public partial class DebugMenu : Control {
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {
 		if (wronged || !initialized) return;
-
+		label.Text = game.state.ToString ();
 	}
 }
