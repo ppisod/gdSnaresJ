@@ -22,6 +22,8 @@ public partial class Game : Control {
 	private AudioStream songAudio;
 	private AudioStreamPlayer audioPlayer;
 
+	private GameState state = GameState.LOADING;
+
 	public int countInBeats;
 	public int trueBeats = 0;
 	public double startDelay = 0;
@@ -53,6 +55,7 @@ public partial class Game : Control {
 
 		// gets rid of exceptions
 		initialized = true;
+		state = GameState.COUNTDOWN;
 	}
 
 	public override void _Process(double delta)
@@ -110,6 +113,7 @@ public partial class Game : Control {
 		audioPlayer.Play ();
 		// initial startDelay
 		startDelay = bm.startMs;
+		state = GameState.PLAYING;
 	}
 
 	private void PreProcessEvents ( ) {
