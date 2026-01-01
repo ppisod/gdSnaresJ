@@ -32,4 +32,27 @@ public partial class Game {
 	public void ProcessUserInput ( ) {
 
 	}
+
+	public void ProcessDebug ( ) {
+		if (sliders == null)
+		{
+			GD.PrintErr ( "sliders is null???" );
+			return;
+		}
+
+		foreach (SliderTrack slider in sliders.sliders)
+		{
+			if (slider == null)
+			{
+				GD.PrintErr ( "slider is null???" );
+			}
+			else
+			{
+				if (slider.track == null)
+				{
+					GD.PrintErr ( "slider track is null???" );
+				}
+			}
+		}
+	}
 }

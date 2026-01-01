@@ -59,7 +59,7 @@ public partial class Game : Control {
 		state = GameState.COUNTDOWN;
 		// begin tej count-in immediately so beats can advance
 		metronome.Start();
-		
+
 	}
 
 	public override void _Process(double delta)
@@ -103,9 +103,10 @@ public partial class Game : Control {
 			metronome.Start();
 			syncedAfterDelay = true;
 		}
+		ProcessDebug ();
 		// Process Events
-		ProcessBeatmapEvents();
-		ProcessUserInput();
+		ProcessBeatmapEvents ();
+		ProcessUserInput ();
 	}
 
 	public void CheckForInitialEvents ( ) {
