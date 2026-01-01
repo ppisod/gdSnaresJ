@@ -17,6 +17,7 @@ public partial class Game : Control {
 
 	private Metronome metronome;
 	private bool initialized = false;
+	private bool syncedAfterDelay = false;
 
 	private bool playing = false;
 	private AudioStream songAudio;
@@ -56,6 +57,9 @@ public partial class Game : Control {
 		// gets rid of exceptions
 		initialized = true;
 		state = GameState.COUNTDOWN;
+		// begin tej count-in immediately so beats can advance
+		metronome.Start();
+		
 	}
 
 	public override void _Process(double delta)
@@ -67,31 +71,37 @@ public partial class Game : Control {
 
 		// update time
 		timeInScene += delta;
+		// advance metronome timing
+		metronome.Update(TimeSpan.FromSeconds(delta));
 		var beats = metronome.TotalBeats;
+		GD.Print ( beats );
 
+
+		if (!playing)
+		{
+			if (beats >= countInBeats) // start playing after count-in
+			{
+				playing = true;
+				PlaySequence ();
+			}
+			return;
+		}
+
+		// While we're waiting to sync with audio start, count down startDelay
 		if (startDelay > 0)
 		{
 			startDelay -= delta;
 			return;
 		}
 
-		if (startDelay < 0)
+		// Once the delay finishes, sync metronome with audio exactly once
+		if (!syncedAfterDelay)
 		{
 			startDelay = 0;
-			// reset metronome to ensure sync?
-			metronome.Stop ();
-			metronome.Reset ();
-			metronome.Start ();
-		}
-
-		if (!playing)
-		{
-			if (beats == countInBeats) // TODO: this is a buggy check
-			{
-				playing = true;
-				PlaySequence ();
-			}
-			return;
+			metronome.Stop();
+			metronome.Reset();
+			metronome.Start();
+			syncedAfterDelay = true;
 		}
 		// Process Events
 		ProcessBeatmapEvents();
@@ -110,6 +120,7 @@ public partial class Game : Control {
 	}
 
 	public void PlaySequence ( ) {
+		metronome.Start ();
 		audioPlayer.Play ();
 		// initial startDelay
 		startDelay = bm.startMs;
