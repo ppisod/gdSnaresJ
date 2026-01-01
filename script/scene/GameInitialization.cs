@@ -1,4 +1,5 @@
 using Godot;
+using snaresJ.script.filesystem;
 using snaresJ.script.scene;
 using snaresJ.script.state;
 using snaresJ.script.utility.Rhythm;
@@ -21,9 +22,9 @@ public partial class Game {
 	}
 
 	private void initializeAudio ( ) {
-		songAudio = GD.Load <AudioStream> ( bm.songPath );
 		audioPlayer = new AudioStreamPlayer ();
 		AddChild ( audioPlayer );
+		songAudio = AudioLoader.Load ( bm.songPath );
 		audioPlayer.Stream = songAudio;
 	}
 }
