@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://r0idg5rhcxt6"]
+[gd_scene load_steps=6 format=3 uid="uid://r0idg5rhcxt6"]
 
 [ext_resource type="Script" uid="uid://3xaafcwn50ki" path="res://script/scene/Game.cs" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bgy41ybl1nesg" path="res://components/score.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cnlv5ufarvscp" path="res://components/sliderContainer.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://fojtefrgahix" path="res://components/slipButton.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://b4sjcs1haykfx" path="res://components/debugMenu.tscn" id="5_iywne"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -80,4 +81,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
 [node name="Quit" parent="." instance=ExtResource("4_lbhrr")]
+layout_mode = 1
+
+[node name="debugMenu" parent="." instance=ExtResource("5_iywne")]
 layout_mode = 1
