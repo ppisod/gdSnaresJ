@@ -29,6 +29,8 @@ public partial class Game : Control {
 	public int trueBeats = 0;
 	public double startDelay = 0;
 
+	public double SnareFadeTime = 1;
+
 	public bool debug = true;
 
 	// Called when the node enters the scene tree for the first time.
@@ -120,7 +122,6 @@ public partial class Game : Control {
 			{
 				sliders.AddTrackToScene ( e.GetTrackObject () );
 			}
-			// add other initial event(s)' pre here.
 		}
 	}
 

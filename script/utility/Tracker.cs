@@ -17,4 +17,6 @@ public class Tracker <T> : List <T> {
     }
 
     public void Reset ( ) {index = 0;}
+
+    public void IncrementIndex ( int n ) {index++;}
 }
