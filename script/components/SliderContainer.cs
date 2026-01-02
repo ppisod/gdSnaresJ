@@ -41,6 +41,33 @@ public partial class SliderContainer : Control
 		return true;
 	}
 
+	public bool AddTrackToScene ( Track track, bool debug ) {
+		if (!initialized) return false;
+		foreach (SliderTrack slider in sliders)
+		{
+			if (slider.track == track)
+			{
+				// already exists
+				if (debug) GD.PrintErr(track.id + ") Track already exists in scene! because track object matches");
+				return false;
+			}
+		}
+		if (sliderIds.Contains(track.id))
+		{
+			if (debug) GD.PrintErr(track.id + ") Track already exists in scene! because slider ids contains track id");
+			return false;
+		}
+
+		var sliderTrack = sliderTrackScene.Instantiate <SliderTrack> ();
+		sliderTrack.track = track;
+		sliderTrackContainer.AddChild (sliderTrack);
+		sliders.Add (sliderTrack);
+		sliderIds.Add (track.id);
+
+		if (debug) GD.Print(track.id + ") Added track to scene");
+		return true;
+	}
+
 	private void LoadPackedScenes ( ) {
 		sliderTrackScene = (PackedScene) ResourceLoader.Load("res://components/sliderTrack.tscn");
 	}

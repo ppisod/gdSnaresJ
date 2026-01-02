@@ -29,6 +29,8 @@ public partial class Game : Control {
 	public int trueBeats = 0;
 	public double startDelay = 0;
 
+	public bool debug = true;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -74,7 +76,7 @@ public partial class Game : Control {
 		// advance metronome timing
 		metronome.Update(TimeSpan.FromSeconds(delta));
 		var beats = metronome.TotalBeats;
-		GD.Print ( beats );
+		// GD.Print ( beats );
 
 
 		if (!playing)
@@ -103,7 +105,9 @@ public partial class Game : Control {
 			metronome.Start();
 			syncedAfterDelay = true;
 		}
-		ProcessDebug ();
+
+		if (debug) ProcessDebug ();
+
 		// Process Events
 		ProcessBeatmapEvents ();
 		ProcessUserInput ();

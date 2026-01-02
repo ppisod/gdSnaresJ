@@ -1,3 +1,4 @@
+using Godot;
 using snaresJ.script.beatmaps.Objects;
 
 namespace snaresJ.script.beatmaps.Events;
@@ -10,7 +11,12 @@ public class StartDisplayingTrack : TimelyEvent {
         var theBeat = introduceTrackEvent.beat - introduceTrackEvent.GetTrackObject ().introductionBeats;
         if (theBeat <= 0)
         {
-            return new Nothing ();
+            GD.PrintErr ( "Track introduction beat is before the first beat." );
+            return new StartDisplayingTrack ( )
+            {
+                beat = 0,
+                track = introduceTrackEvent.GetTrackObject ()
+            };
         }
 
         return new StartDisplayingTrack ( )

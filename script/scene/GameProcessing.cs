@@ -12,9 +12,20 @@ public partial class Game {
 				continue;
 			}
 			if (!sceneEvent.hasPassedBeat ( currentBeatD )) continue;
-			if (sceneEvent is StartDisplayingTrack SDTEvent) sliders.AddTrackToScene ( SDTEvent.track );
+			if (sceneEvent is StartDisplayingTrack SDTEvent) sliders.AddTrackToScene ( SDTEvent.track, true );
 			if (sceneEvent is IntroduceTrack ITEvent)
-				sliders.sliders.Find ( track => track.track == ITEvent.GetTrackObject () ).Active = true;
+			{
+
+				var s = sliders.sliders.Find ( track => track.track == ITEvent.GetTrackObject () );
+				if (s == null)
+				{
+					// GD.PrintErr ( "Could not find slider for track " + ITEvent.GetTrackObject ().id );
+					continue;
+				}
+
+				s.Active = true;
+
+			}
 		}
 
 		foreach (TimelyEvent rhythmObject in BeatmapEvents.rhythmObjects.GetNext (

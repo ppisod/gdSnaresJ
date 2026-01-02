@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Godot;
 using snaresJ.script.beatmaps.Enum;
 using snaresJ.script.utility;
 
@@ -24,25 +25,23 @@ public class EventCollection ( double initialBeatsPerMinute ) {
         // be ascending, so therefore, if we reverse it, the for loop
         // below will go through less iterations.
         // This can also be substituted with a binary search.
-        if (events.Count == 0)
-        {
-            events.Add(evt);
-            return;
-        }
+
+        // Decide insertion index
         int indx = 0;
-        for ( ; indx < events.Count; indx++ )
-        {
-            var timestampListItem = events[indx].timestampInMs ( initialBeatsPerMinute );
-            var timestampNewItem = evt.timestampInMs ( initialBeatsPerMinute );
-            if ( Math.Abs ( timestampListItem - timestampNewItem ) < 0.0001d || timestampNewItem < timestampListItem )
-            {
-                events.Insert ( indx, evt );
-                return;
+        if (events.Count > 0) {
+            double tsNew = evt.timestampInMs(initialBeatsPerMinute);
+            for (; indx < events.Count; indx++) {
+                double tsList = events[indx].timestampInMs(initialBeatsPerMinute);
+                if (Math.Abs(tsList - tsNew) < 0.0001d || tsNew < tsList) {
+                    break; // insert here
+                }
             }
         }
-        events.Insert ( indx, evt );
 
-        CustomBehaviourAdd ( evt );
+        events.Insert(indx, evt);
+
+        // Always perform custom behavior for the event that was just added
+        CustomBehaviourAdd(evt);
     }
 
     public void SortEventsIntoCategories ( ) {
@@ -58,9 +57,12 @@ public class EventCollection ( double initialBeatsPerMinute ) {
     }
 
     private void CustomBehaviourAdd ( TimelyEvent evt ) {
+        GD.Print ( "Custom Behaviour Add called" );
         if (evt is IntroduceTrack e)
         {
-            StartDisplayingTrack.AddIntroTrackEv ( e );
+            GD.Print ( "Custom Behaviour Add for IntroduceTrack event added" );
+            var s = StartDisplayingTrack.AddIntroTrackEv ( e );
+            Add ( s );
         }
     }
 }
