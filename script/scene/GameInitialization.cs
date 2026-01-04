@@ -26,6 +26,6 @@ public partial class Game {
 		AddChild ( audioPlayer );
 		songAudio = AudioLoader.Load ( bm.songPath );
 		audioPlayer.Stream = songAudio;
-		audioPlayer.VolumeDb = -5;
+		audioPlayer.VolumeDb = -10;
 	}
 }

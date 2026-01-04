@@ -1,0 +1,183 @@
+[gd_scene load_steps=11 format=3 uid="uid://bwcj75mmxrr7w"]
+
+[ext_resource type="Script" uid="uid://3xaafcwn50ki" path="res://script/scene/Game.cs" id="1_aqd0i"]
+[ext_resource type="PackedScene" uid="uid://bgy41ybl1nesg" path="res://components/score.tscn" id="2_cpy4b"]
+[ext_resource type="PackedScene" uid="uid://cnlv5ufarvscp" path="res://components/sliderContainer.tscn" id="3_xsfc3"]
+[ext_resource type="Script" uid="uid://b82ei57sgrl22" path="res://script/components/Slider.cs" id="4_mu2iy"]
+[ext_resource type="Texture2D" uid="uid://hdpw8c8uus8i" path="res://resources/slidernew.png" id="5_aqd0i"]
+[ext_resource type="Texture2D" uid="uid://dv2fwx5fyj0xy" path="res://resources/newsnare.png" id="7_cpy4b"]
+[ext_resource type="PackedScene" uid="uid://fojtefrgahix" path="res://components/slipButton.tscn" id="8_3fr6p"]
+[ext_resource type="Texture2D" uid="uid://dadtgmkvay2lg" path="res://resources/ticker-width_accurate.png" id="8_cpy4b"]
+[ext_resource type="PackedScene" uid="uid://b4sjcs1haykfx" path="res://components/debugMenu.tscn" id="9_5pmvu"]
+
+[sub_resource type="Theme" id="Theme_xp48x"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aqd0i")
+
+[node name="texbg" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="colbg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="body" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="header" type="HBoxContainer" parent="body"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="score" parent="body/header" instance=ExtResource("2_cpy4b")]
+layout_mode = 2
+
+[node name="vline" type="ColorRect" parent="body/header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.01
+
+[node name="spacer" type="VBoxContainer" parent="body/header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="timer" type="VBoxContainer" parent="body/header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="game" type="HBoxContainer" parent="body"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="spacer" type="Control" parent="body/game"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="sliderContainer" parent="body/game" instance=ExtResource("3_xsfc3")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="body/game/sliderContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="slider" type="MarginContainer" parent="body/game/sliderContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_xp48x")
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 400
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 400
+script = ExtResource("4_mu2iy")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="body/game/sliderContainer/Control/slider"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("5_aqd0i")
+region_rect = Rect2(0, 0, 160, 16)
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="rhythmObjects" type="MarginContainer" parent="body/game/sliderContainer/Control/slider"]
+layout_mode = 2
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_right = 35
+
+[node name="ticker" type="HBoxContainer" parent="body/game/sliderContainer/Control/slider/rhythmObjects"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ticker1" type="TextureRect" parent="body/game/sliderContainer/Control/slider/rhythmObjects/ticker"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 4
+
+[node name="ticker2" type="TextureRect" parent="body/game/sliderContainer/Control/slider/rhythmObjects/ticker"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_cpy4b")
+stretch_mode = 4
+
+[node name="ticker3" type="TextureRect" parent="body/game/sliderContainer/Control/slider/rhythmObjects/ticker"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_cpy4b")
+stretch_mode = 4
+
+[node name="ticker4" type="TextureRect" parent="body/game/sliderContainer/Control/slider/rhythmObjects/ticker"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_cpy4b")
+stretch_mode = 4
+
+[node name="snares" type="Control" parent="body/game/sliderContainer/Control/slider/rhythmObjects"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="body/game/sliderContainer/Control/slider/rhythmObjects/snares"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.5
+anchor_right = 0.4
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_cpy4b")
+stretch_mode = 6
+
+[node name="spacer2" type="Control" parent="body/game"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Quit" parent="." instance=ExtResource("8_3fr6p")]
+layout_mode = 1
+
+[node name="debugMenu" parent="." instance=ExtResource("9_5pmvu")]
+layout_mode = 1
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1.0
+offset_bottom = 2.0
+mouse_filter = 2
