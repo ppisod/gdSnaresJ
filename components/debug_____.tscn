@@ -116,8 +116,8 @@ patch_margin_bottom = 1
 
 [node name="rhythmObjects" type="MarginContainer" parent="body/game/sliderContainer/Control/slider"]
 layout_mode = 2
-theme_override_constants/margin_left = 34
-theme_override_constants/margin_right = 35
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
 
 [node name="ticker" type="HBoxContainer" parent="body/game/sliderContainer/Control/slider/rhythmObjects"]
 layout_mode = 2

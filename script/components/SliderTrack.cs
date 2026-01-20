@@ -6,7 +6,7 @@ public partial class SliderTrack : Control {
 
 	public bool Active = false;
 
-	public Slider slider;
+	public SliderG slider;
 
 	public Track track;
 
@@ -16,7 +16,7 @@ public partial class SliderTrack : Control {
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-		slider = GetNode <Slider> ( "slider" );
+		slider = GetNode <SliderG> ( "slider" );
 	}
 
 	public override void _Process(double delta)
@@ -24,7 +24,7 @@ public partial class SliderTrack : Control {
 
 		// updating the sliderTrack is done here
 
-		if (slider.@fixed)
+		if (slider.slider.@fixed)
 		{
 			SetVisible (true);
 		}
